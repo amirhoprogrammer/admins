@@ -31,7 +31,7 @@ export default function LoginForm() {
       const data = await login(formData);
       localStorage.setItem("token", data.token);
       setStatus("success");
-      router.push("/dashboard");
+      router.push("/Dashboard");
     } catch (error) {
       setStatus("error");
       if (axios.isAxiosError(error)) {

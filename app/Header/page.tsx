@@ -3,9 +3,9 @@ import React from "react";
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between w-full p-5 shadow-lg">
       {isAuthenticated() && (
-        <div>
+        <div className="flex items-center justify-between w-full">
           <p className="text-base">Authenticated</p>
           <button className="text-base">Log out</button>
         </div>
