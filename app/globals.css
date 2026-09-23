@@ -11,8 +11,14 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+@theme {
+  --color-form: #0b97ef;
+  --color-submit: #00e6b5;
+  --color-dashbord: #daf2ff;
+  --color-dashboardLink: #6dfacd;
+}
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
