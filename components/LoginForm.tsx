@@ -5,9 +5,11 @@ import { LoginPayload } from "@/utils/types";
 import axios from "axios";
 import { login } from "@/services/login";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function LoginForm() {
   const router = useRouter();
+  const { setToken } = useAuth();
   const [formData, setFormData] = useState<LoginPayload>({
     email: "",
     password: "",
@@ -29,9 +31,9 @@ export default function LoginForm() {
 
     try {
       const data = await login(formData);
-      localStorage.setItem("token", data.token);
+      setToken(data.token); // بجای localStorage.setItem مستقیم
       setStatus("success");
-      router.push("/Dashboard");
+      router.push("/");
     } catch (error) {
       setStatus("error");
       if (axios.isAxiosError(error)) {
@@ -51,7 +53,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="px-2 mb-2 mx-2 rounded-md py-2 bg-form w-[40%]"
+      className="px-2 mb-2 mx-2 rounded-md py-2 bg-form w-[40%] shadow-2xl"
     >
       <div className="py-2">
         <label className="block mb-1">Email</label>

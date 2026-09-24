@@ -21,3 +21,10 @@ export interface category {
   name_fa: string;
   created: string;
 }
+
+export interface AuthContextType {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  setToken: (token: string) => void;
+  logout: () => void;
+}
