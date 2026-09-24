@@ -16,6 +16,13 @@
   --color-submit: #00e6b5;
   --color-dashbord: #daf2ff;
   --color-dashboardLink: #6dfacd;
+  --color-category: #00d1df;
+  --color-categoryId: #00b7f6;
+  --color-product: #7d72c3;
+
+  --color-update: #f9f871;
+  --color-details: #99f389;
+  --color-delete: #fc5859;
 }
 
 @media (prefers-color-scheme: light) {
