@@ -32,7 +32,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex items-center justify-center py-4">
-      <div className="flex items-center justify-center bg-dashbord w-[60%] rounded-lg">
+      <div className="flex items-center justify-center bg-dashbord w-[60%] rounded-lg shadow-2xl">
         <div className="leftside flex-col content-center border-r-2 w-[20%]">
           <div className="flex items-center justify-center p-4 border-b-2">
             Dashbord
