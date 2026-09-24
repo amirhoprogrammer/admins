@@ -21,6 +21,10 @@ export interface category {
   name_fa: string;
   created: string;
 }
+export interface CreateCategoryPayload {
+  name_en: string;
+  name_fa: string;
+}
 
 export interface AuthContextType {
   isAuthenticated: boolean;
