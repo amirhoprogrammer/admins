@@ -12,7 +12,7 @@ export interface productsDetail {
   name_fa: string;
   description_en: string;
   description_fa: string;
-  image: string;
+  image: string | null;
 }
 
 export interface category {

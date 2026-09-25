@@ -3,6 +3,7 @@
 import { getProducts } from "@/services/products";
 import { productsDetail } from "@/utils/types";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Product() {
   const [products, setProducts] = useState<productsDetail[] | null>(null);
@@ -16,7 +17,7 @@ export default function Product() {
       });
   }, []);
 
-  if (products === null) return null; // یا یه اسکلتون لودینگ
+  if (products === null) return null;
   return (
     <div className="p-2">
       {products.map((product, id) => (
@@ -27,7 +28,22 @@ export default function Product() {
           <div className="bg-productId rounded-2xl p-2">
             <p className="text-base">{id}</p>
           </div>
-          <div className="">
+          <div className="relative w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-200">
+            {product.image ? (
+              <Image
+                src={product.image}
+                alt={product.name_en}
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">
+                بدون عکس
+              </div>
+            )}
+          </div>
+          <div className="bg-text p-2 rounded-lg">
             <p className="text-base" dir="ltr">
               {product.name_en}
             </p>
@@ -35,7 +51,7 @@ export default function Product() {
               {product.name_fa}
             </p>
           </div>
-          <div className="">
+          <div className="bg-text p-2 rounded-lg">
             <p className="text-base" dir="ltr">
               {product.description_en.slice(0, 20) + "..."}
             </p>

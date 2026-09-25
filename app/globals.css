@@ -23,6 +23,7 @@
   --color-update: #f9f871;
   --color-details: #99f389;
   --color-delete: #fc5859;
+  --color-text: #8e96cb;
 }
 
 @media (prefers-color-scheme: light) {

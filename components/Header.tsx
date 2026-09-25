@@ -17,7 +17,10 @@ export default function Header() {
       {isAuthenticated ? (
         <div className="flex items-center justify-between w-full">
           <p className="text-base">Authenticated</p>
-          <button onClick={handleLogout} className="text-base">
+          <button
+            onClick={handleLogout}
+            className="text-base bg-delete rounded-lg p-2"
+          >
             Log out
           </button>
         </div>

@@ -1,5 +1,6 @@
 import Product from "@/components/Product";
 import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
 
 export default function Products() {
   return (
@@ -9,9 +10,12 @@ export default function Products() {
         <div className="rightside w-[80%] py-2">
           <div className="flex items-center justify-around gap-2">
             <h1 className="text-2xl font-bold">Products:</h1>
-            <div className="w-30 h-10 rounded-2xl bg-dashboardLink flex items-center justify-center">
+            <Link
+              href="/Products/new"
+              className="w-30 h-10 rounded-2xl bg-dashboardLink flex items-center justify-center"
+            >
               add Products
-            </div>
+            </Link>
           </div>
           <div className="flex items-center justify-center p-4">
             <Product />
