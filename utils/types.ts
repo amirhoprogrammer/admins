@@ -7,7 +7,7 @@ export interface LoginResponse {
   token: string;
 }
 export interface productsDetail {
-  categoryId: number;
+  category: number;
   name_en: string;
   name_fa: string;
   description_en: string;

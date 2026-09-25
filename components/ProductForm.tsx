@@ -16,7 +16,7 @@ export default function ProductForm() {
   const [error, setError] = useState("");
 
   const [form, setForm] = useState({
-    categoryId: 0,
+    category: 0,
     name_en: "",
     name_fa: "",
     description_en: "",
@@ -104,9 +104,9 @@ export default function ProductForm() {
         <label className="block mb-1">دسته‌بندی</label>
         <select
           required
-          value={form.categoryId}
+          value={form.category}
           onChange={(e) =>
-            setForm({ ...form, categoryId: Number(e.target.value) })
+            setForm({ ...form, category: Number(e.target.value) })
           }
           className="w-full border-b-2 p-2"
         >

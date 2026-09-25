@@ -1,3 +1,4 @@
+// services/api.ts
 import axios from "axios";
 
 const api = axios.create({
@@ -10,19 +11,21 @@ api.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `${token}`;
-      //config.headers.Authorization = `Bearer ${token}`;
     }
   }
   return config;
 });
 
-// اگه توکن منقضی/نامعتبر بود (401)، کاربر رو به لاگین برگردون
+// اگه توکن منقضی/نامعتبر بود (401 یا 403)، کاربر رو به لاگین برگردون
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401 && typeof window !== "undefined") {
+    if (
+      (error.response?.status === 401 || error.response?.status === 403) &&
+      typeof window !== "undefined"
+    ) {
       localStorage.removeItem("token");
-      window.location.href = "/login";
+      window.location.href = "/Login";
     }
     return Promise.reject(error);
   }
