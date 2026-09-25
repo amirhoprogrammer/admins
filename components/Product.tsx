@@ -21,7 +21,7 @@ export default function Product() {
     <div className="p-2">
       {products.map((product, id) => (
         <div
-          className="p-4 rounded-lg bg-product flex m-4 gap-2 items-center justify-between"
+          className="p-4 rounded-lg bg-product flex m-4 gap-6 items-center justify-between"
           key={id}
         >
           <div className="bg-productId rounded-2xl p-2">

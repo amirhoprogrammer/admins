@@ -24,13 +24,10 @@ export const getProduct = async (
   return response.data;
 };
 
-export const updateCategory = async (
+export const updateProduct = async (
   product_id: number,
   item: productsDetail
 ): Promise<productsDetail> => {
-  const response = await api.put(
-    `/products/category/update/${product_id}/`,
-    item
-  );
+  const response = await api.put(`/products/update/${product_id}/`, item);
   return response.data;
 };
