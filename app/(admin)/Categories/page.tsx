@@ -1,22 +1,13 @@
 import Category from "@/components/Category";
+import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 import React from "react";
-
+//app/Categories/page.tsx
 export default function Categories() {
   return (
     <div className="flex items-center justify-center py-4">
-      <div className="flex items-center justify-center bg-dashbord w-[60%] rounded-lg shadow-2xl">
-        <div className="leftside flex-col content-center border-r-2 w-[20%]">
-          <div className="flex items-center justify-center p-4 border-b-2">
-            Dashbord
-          </div>
-          <div className="flex items-center justify-center p-4 border-b-2">
-            Categories
-          </div>
-          <div className="flex items-center justify-center p-4 border-b-2">
-            Products
-          </div>
-        </div>
+      <div className="flex items-stretch bg-dashbord w-[60%] rounded-lg shadow-2xl">
+        <Sidebar />
         <div className="rightside w-[80%] py-2">
           <div className="flex items-center justify-around gap-2">
             <h1 className="text-2xl font-bold">Categories:</h1>

@@ -1,10 +1,11 @@
 "use client";
-
+//app/(admin)
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getCategories } from "@/services/category";
 import { getProducts } from "@/services/products";
 import { category, productsDetail } from "@/utils/types";
+import Sidebar from "@/components/Sidebar";
 
 export default function Dashboard() {
   const [categories, setCategories] = useState<category[] | null>(null);
@@ -32,18 +33,8 @@ export default function Dashboard() {
 
   return (
     <div className="flex items-center justify-center py-4">
-      <div className="flex items-center justify-center bg-dashbord w-[60%] rounded-lg shadow-2xl">
-        <div className="leftside flex-col content-center border-r-2 w-[20%]">
-          <div className="flex items-center justify-center p-4 border-b-2">
-            Dashbord
-          </div>
-          <div className="flex items-center justify-center p-4 border-b-2">
-            Categories
-          </div>
-          <div className="flex items-center justify-center p-4 border-b-2">
-            Products
-          </div>
-        </div>
+      <div className="flex items-stretch bg-dashbord w-[60%] rounded-lg shadow-2xl">
+        <Sidebar />
         <div className="rightside w-[80%]">
           <div className="flex items-center justify-around ">
             <div className="flex items-center justify-center gap-2">
