@@ -33,11 +33,6 @@ export default function ProductForm() {
     e.preventDefault();
     setError("");
 
-    //if (!imageUrl) {
-    //  setError("لطفاً ابتدا عکس محصول را آپلود کنید");
-    //  return;
-    //}
-
     setLoading(true);
     try {
       await createProducts({
