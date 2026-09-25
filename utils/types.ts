@@ -7,6 +7,7 @@ export interface LoginResponse {
   token: string;
 }
 export interface productsDetail {
+  id?: number; // این خط اضافه شد
   category: number;
   name_en: string;
   name_fa: string;
