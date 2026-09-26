@@ -5,6 +5,7 @@ import { productsDetail } from "@/utils/types";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Modal from "./Modal";
+import Link from "next/link";
 
 export default function Product() {
   const [selectedProduct, setSelectedProduct] = useState<productsDetail | null>(
@@ -133,7 +134,12 @@ export default function Product() {
                 </div>
               )}
             </Modal>
-            <button className="bg-update p-2 rounded-lg">update</button>
+            <Link
+              href={`/Products/${product.id}/edit`}
+              className="bg-update p-2 rounded-lg"
+            >
+              update
+            </Link>
             <button
               onClick={() => handleDelete(product.id!)}
               disabled={deletingId === product.id}

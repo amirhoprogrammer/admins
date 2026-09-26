@@ -3,24 +3,34 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import ImageUploader from "@/components/ImageUploader";
-import { createProducts } from "@/services/products";
+import { createProducts, updateProduct } from "@/services/products";
 import { getCategories } from "@/services/category";
-import { productsDetail, category } from "@/utils/types";
+import { productsDetail, category, ProductFormProps } from "@/utils/types";
 import { useEffect } from "react";
 
-export default function ProductForm() {
+export default function ProductForm({
+  productId,
+  initialData,
+}: ProductFormProps) {
   const router = useRouter();
+  const isEditMode = !!productId;
   const [categories, setCategories] = useState<category[]>([]);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    initialData?.image || null
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const [form, setForm] = useState({
-    category: 0,
-    name_en: "",
-    name_fa: "",
-    description_en: "",
-    description_fa: "",
+    category:
+      typeof initialData?.category === "object" &&
+      initialData?.category !== null
+        ? (initialData.category as any).id
+        : initialData?.category ?? 0,
+    name_en: initialData?.name_en ?? "",
+    name_fa: initialData?.name_fa ?? "",
+    description_en: initialData?.description_en ?? "",
+    description_fa: initialData?.description_fa ?? "",
   });
 
   useEffect(() => {
@@ -35,15 +45,17 @@ export default function ProductForm() {
 
     setLoading(true);
     try {
-      await createProducts({
-        ...form,
-        image: imageUrl,
-      } as productsDetail);
+      const payload = { ...form, image: imageUrl } as productsDetail;
 
+      if (isEditMode) {
+        await updateProduct(productId, payload);
+      } else {
+        await createProducts(payload);
+      }
       router.push("/Products");
     } catch (err) {
       console.error(err);
-      setError("خطا در ثبت محصول");
+      setError(isEditMode ? "خطا در ویرایش محصول" : "خطا در ثبت محصول");
     } finally {
       setLoading(false);
     }
@@ -59,6 +71,11 @@ export default function ProductForm() {
           (اختیاری)عکس محصول
         </label>
         <ImageUploader onUploaded={setImageUrl} />
+        {imageUrl && isEditMode && (
+          <p className="text-xs text-gray-500 mt-1">
+            عکس فعلی حفظ شده؛ برای تغییر، عکس جدید آپلود کنید
+          </p>
+        )}
       </div>
 
       <div>
@@ -141,7 +158,7 @@ export default function ProductForm() {
         disabled={loading}
         className="bg-submit px-6 py-2 rounded disabled:opacity-50"
       >
-        {loading ? "در حال ثبت..." : "ثبت محصول"}
+        {loading ? "در حال ثبت..." : isEditMode ? "ویرایش محصول" : "ثبت محصول"}
       </button>
     </form>
   );

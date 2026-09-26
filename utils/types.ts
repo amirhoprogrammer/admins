@@ -16,6 +16,11 @@ export interface productsDetail {
   image: string | null;
 }
 
+export interface ProductFormProps {
+  productId?: number;
+  initialData?: productsDetail;
+}
+
 export interface category {
   id: number;
   name_en: string;
@@ -27,6 +32,10 @@ export interface CreateCategoryPayload {
   name_fa: string;
 }
 
+export interface CategoryFormProps {
+  categoryId?: number; // اگه پر باشه یعنی حالت Edit
+  initialData?: category; // اطلاعات اولیه برای پر کردن فرم
+}
 export interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;

@@ -5,6 +5,7 @@ import {
   getCategory,
 } from "@/services/category";
 import { category } from "@/utils/types";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function Category() {
@@ -59,7 +60,12 @@ export default function Category() {
             <p className="text-base">{category.name_fa}</p>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <button className="bg-update p-2 rounded-lg">update</button>
+            <Link
+              href={`/Categories/${category.id}/edit`}
+              className="bg-update p-2 rounded-lg"
+            >
+              update
+            </Link>
             <button
               onClick={() => handleDelete(category.id!)}
               disabled={deletingId === category.id}

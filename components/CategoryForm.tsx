@@ -1,33 +1,38 @@
 "use client";
 
-import { createCategory } from "@/services/category";
-import { CreateCategoryPayload } from "@/utils/types";
+import { createCategory, updateCategory } from "@/services/category";
+import { CategoryFormProps, CreateCategoryPayload } from "@/utils/types";
 import { useRouter } from "next/navigation";
 
 import { FormEvent, useState } from "react";
 
-export default function CategoryForm() {
+export default function CategoryForm({
+  categoryId,
+  initialData,
+}: CategoryFormProps) {
   const router = useRouter();
+  const isEditMode = !!categoryId;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({
-    name_en: "",
-    name_fa: "",
+    name_en: initialData?.name_en ?? "",
+    name_fa: initialData?.name_fa ?? "",
   });
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
-
     setLoading(true);
     try {
-      await createCategory({
-        ...form,
-      } as CreateCategoryPayload);
-
+      const payload = { ...form } as CreateCategoryPayload;
+      if (isEditMode) {
+        updateCategory(categoryId, payload);
+      } else {
+        await createCategory(payload);
+      }
       router.push("/Categories");
     } catch (err) {
       console.error(err);
-      setError("خطا در ثبت دسته بندی");
+      setError(isEditMode ? "خطا در ثبت دسته بندی" : "خطا در ویرایش دسته بندی");
     } finally {
       setLoading(false);
     }
@@ -69,7 +74,11 @@ export default function CategoryForm() {
         disabled={loading}
         className="bg-submit px-6 py-2 rounded disabled:opacity-50"
       >
-        {loading ? "در حال ثبت..." : "ثبت دسته بندی"}
+        {loading
+          ? "در حال ثبت..."
+          : isEditMode
+          ? "ویرایش دسته بندی"
+          : "ثبت دسته بندی"}
       </button>
     </form>
   );
