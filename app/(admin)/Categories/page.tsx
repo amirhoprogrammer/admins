@@ -11,9 +11,12 @@ export default function Categories() {
         <div className="rightside w-[80%] py-2">
           <div className="flex items-center justify-around gap-2">
             <h1 className="text-2xl font-bold">Categories:</h1>
-            <div className="w-30 h-10 rounded-2xl bg-dashboardLink flex items-center justify-center">
-              add categories
-            </div>
+            <Link
+              href="/Categories/new"
+              className="w-30 h-10 rounded-2xl bg-dashboardLink flex items-center justify-center"
+            >
+              add Categories
+            </Link>
           </div>
           <div className="flex items-center justify-center p-4">
             <Category />

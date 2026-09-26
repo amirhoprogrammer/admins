@@ -50,14 +50,21 @@ export default function ProductForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 max-w-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 p-4 max-w-lg w-full"
+    >
       <div>
-        <label className="block mb-1">(اختیاری)عکس محصول</label>
+        <label className="mb-1 flex items-center justify-end">
+          (اختیاری)عکس محصول
+        </label>
         <ImageUploader onUploaded={setImageUrl} />
       </div>
 
       <div>
-        <label className="block mb-1">نام (English)</label>
+        <label className="flex items-center justify-end mb-1">
+          نام (English)
+        </label>
         <input
           type="text"
           required
@@ -68,7 +75,9 @@ export default function ProductForm() {
       </div>
 
       <div>
-        <label className="block mb-1">نام (فارسی)</label>
+        <label className="flex items-center justify-end mb-1">
+          نام (فارسی)
+        </label>
         <input
           type="text"
           required
@@ -80,7 +89,9 @@ export default function ProductForm() {
       </div>
 
       <div>
-        <label className="block mb-1">توضیحات (English)</label>
+        <label className="flex items-center justify-end mb-1">
+          توضیحات (English)
+        </label>
         <textarea
           required
           value={form.description_en}
@@ -90,7 +101,9 @@ export default function ProductForm() {
       </div>
 
       <div>
-        <label className="block mb-1">توضیحات (فارسی)</label>
+        <label className="flex items-center justify-end mb-1">
+          توضیحات (فارسی)
+        </label>
         <textarea
           required
           value={form.description_fa}
@@ -101,7 +114,7 @@ export default function ProductForm() {
       </div>
 
       <div>
-        <label className="block mb-1">دسته‌بندی</label>
+        <label className="flex items-center justify-end mb-1">دسته‌بندی</label>
         <select
           required
           value={form.category}

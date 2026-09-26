@@ -59,7 +59,6 @@ export default function Category() {
             <p className="text-base">{category.name_fa}</p>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <button className="bg-details p-2 rounded-lg">details</button>
             <button className="bg-update p-2 rounded-lg">update</button>
             <button
               onClick={() => handleDelete(category.id!)}

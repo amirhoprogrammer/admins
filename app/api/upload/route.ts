@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
         Key: fileName,
         Body: buffer,
         ContentType: file.type,
-        //ACL: "public-read", // تا لینک مستقیم قابل نمایش باشه
+        ACL: "public-read", // تا لینک مستقیم قابل نمایش باشه
       })
     );
 
