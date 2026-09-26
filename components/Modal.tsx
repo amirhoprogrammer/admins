@@ -26,16 +26,18 @@ export default function Modal({
       />
 
       {/* خود مودال */}
-      <div className="relative bg-product rounded-2xl shadow-2xl w-full max-w-4xl max-h-[100vh] mx-4 p-6 animate-in fade-in zoom-in duration-200">
+      <div className="relative bg-modal rounded-2xl shadow-2xl w-full max-w-4xl max-h-screen mx-4 p-6 animate-in fade-in zoom-in duration-200">
         {/* دکمه بستن */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl leading-none"
+          className="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-2xl leading-none"
         >
           ×
         </button>
 
-        {title && <h2 className="text-xl font-bold mb-4 pr-8">{title}</h2>}
+        {title && (
+          <h2 className="text-xl font-bold mb-4 pl-8 text-right">{title}</h2>
+        )}
 
         <div>{children}</div>
       </div>

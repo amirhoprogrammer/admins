@@ -6,11 +6,16 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Modal from "./Modal";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 export default function Product() {
   const [selectedProduct, setSelectedProduct] = useState<productsDetail | null>(
     null
   );
+  const [productToDelete, setProductToDelete] = useState<productsDetail | null>(
+    null
+  );
+
   const [products, setProducts] = useState<productsDetail[] | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
@@ -22,22 +27,22 @@ export default function Product() {
         setProducts([]);
       });
   }, []);
-  const handleDelete = async (productId: number) => {
-    const confirmed = window.confirm(
-      "آیا از حذف این محصول مطمئن هستید؟ این عمل قابل بازگشت نیست."
-    );
-    if (!confirmed) return;
+  const confirmDelete = async () => {
+    if (!productToDelete) return;
+    const productId = productToDelete.id!;
 
     setDeletingId(productId);
+    setProductToDelete(null); // مودال تأیید رو ببند
+
     try {
       await deleteProducts(productId);
-      // از state هم حذفش کن تا لیست بدون رفرش آپدیت بشه
       setProducts((prev) =>
         prev ? prev.filter((p) => p.id !== productId) : prev
       );
+      toast.success("محصول با موفقیت حذف شد");
     } catch (error) {
       console.error("Error deleting product:", error);
-      alert("خطا در حذف محصول");
+      toast.error("خطا در حذف محصول");
     } finally {
       setDeletingId(null);
     }
@@ -92,48 +97,7 @@ export default function Product() {
             >
               details
             </button>
-            {/* فقط یک مودال بیرون از map */}
-            <Modal
-              isOpen={!!selectedProduct}
-              onClose={() => setSelectedProduct(null)}
-              title="Product Details"
-            >
-              {selectedProduct && (
-                <div className="rounded-lg w-full flex flex-col overflow-hidden gap-5">
-                  <div className="relative w-full h-80 shrink-0 rounded-lg overflow-hidden bg-gray-200">
-                    {selectedProduct.image ? (
-                      <Image
-                        src={selectedProduct.image}
-                        alt={selectedProduct.name_en}
-                        fill
-                        className="object-center"
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        بدون عکس
-                      </div>
-                    )}
-                  </div>
 
-                  <div className="flex items-center justify-between p-2">
-                    <h3 className="text-2xl font-bold">
-                      {selectedProduct.name_en}
-                    </h3>
-                    <h3 className="text-2xl font-bold" dir="rtl">
-                      {selectedProduct.name_fa}
-                    </h3>
-                  </div>
-
-                  <div className="flex flex-col p-4 gap-3">
-                    <p className="text-sm">{selectedProduct.description_en}</p>
-                    <p className="text-sm" dir="rtl">
-                      {selectedProduct.description_fa}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </Modal>
             <Link
               href={`/Products/${product.id}/edit`}
               className="bg-update p-2 rounded-lg"
@@ -141,7 +105,7 @@ export default function Product() {
               update
             </Link>
             <button
-              onClick={() => handleDelete(product.id!)}
+              onClick={() => setProductToDelete(product)}
               disabled={deletingId === product.id}
               className="bg-delete p-2 rounded-lg disabled:opacity-50"
             >
@@ -150,6 +114,77 @@ export default function Product() {
           </div>
         </div>
       ))}
+      {/* فقط یک مودال بیرون از map */}
+      <Modal
+        isOpen={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        title="جزبیات"
+      >
+        {selectedProduct && (
+          <div className="rounded-lg w-full flex flex-col overflow-hidden gap-5">
+            <div className="relative w-full h-80 shrink-0 rounded-lg overflow-hidden bg-gray-200">
+              {selectedProduct.image ? (
+                <Image
+                  src={selectedProduct.image}
+                  alt={selectedProduct.name_en}
+                  fill
+                  className="object-center"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  بدون عکس
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between p-2">
+              <h3 className="text-2xl font-bold">{selectedProduct.name_en}</h3>
+              <h3 className="text-2xl font-bold" dir="rtl">
+                {selectedProduct.name_fa}
+              </h3>
+            </div>
+
+            <div className="flex flex-col p-4 gap-3">
+              <p className="text-sm">{selectedProduct.description_en}</p>
+              <p className="text-sm" dir="rtl">
+                {selectedProduct.description_fa}
+              </p>
+            </div>
+          </div>
+        )}
+      </Modal>
+      <Modal
+        isOpen={!!productToDelete}
+        onClose={() => setProductToDelete(null)}
+        title="تأیید حذف"
+      >
+        {productToDelete && (
+          <div className="flex flex-col gap-6">
+            <p className="text-base text-center">
+              آیا از حذف محصول «{productToDelete.name_fa}» مطمئن هستید؟
+              <br />
+              <span className="text-sm text-back">
+                این عمل قابل بازگشت نیست.
+              </span>
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => setProductToDelete(null)}
+                className="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300"
+              >
+                انصراف
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-6 py-2 rounded-lg bg-delete text-white hover:bg-red-800"
+              >
+                بله، حذف کن
+              </button>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
