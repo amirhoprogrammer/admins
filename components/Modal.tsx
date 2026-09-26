@@ -19,15 +19,11 @@ export default function Modal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* پس‌زمینه تیره */}
       <div
         className="absolute inset-0 bg-gray backdrop-blur-sm"
         onClick={onClose}
       />
-
-      {/* خود مودال */}
       <div className="relative bg-modal rounded-2xl shadow-2xl w-full max-w-4xl max-h-screen mx-4 p-6 animate-in fade-in zoom-in duration-200">
-        {/* دکمه بستن */}
         <button
           onClick={onClose}
           className="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-2xl leading-none"

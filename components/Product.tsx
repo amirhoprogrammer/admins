@@ -32,7 +32,7 @@ export default function Product() {
     const productId = productToDelete.id!;
 
     setDeletingId(productId);
-    setProductToDelete(null); // مودال تأیید رو ببند
+    setProductToDelete(null);
 
     try {
       await deleteProducts(productId);
@@ -114,7 +114,6 @@ export default function Product() {
           </div>
         </div>
       ))}
-      {/* فقط یک مودال بیرون از map */}
       <Modal
         isOpen={!!selectedProduct}
         onClose={() => setSelectedProduct(null)}

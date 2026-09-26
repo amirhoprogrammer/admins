@@ -32,7 +32,7 @@ export default function ImageUploader({ onUploaded }: ImageUploaderProps) {
       if (!res.ok) throw new Error("آپلود ناموفق بود");
 
       const data = await res.json();
-      onUploaded(data.url); // url نهایی رو به فرم بیرونی برمی‌گردونه
+      onUploaded(data.url);
     } catch (err) {
       console.error(err);
       setError("خطا در آپلود عکس");

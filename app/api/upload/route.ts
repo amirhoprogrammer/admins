@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "فایلی ارسال نشده" }, { status: 400 });
     }
 
-    // یه اسم یکتا برای فایل بساز تا فایل‌ها همدیگه رو رونویسی نکنن
     const fileExt = file.name.split(".").pop();
     const fileName = `${crypto.randomUUID()}.${fileExt}`;
 
@@ -23,7 +22,7 @@ export async function POST(req: NextRequest) {
         Key: fileName,
         Body: buffer,
         ContentType: file.type,
-        ACL: "public-read", // تا لینک مستقیم قابل نمایش باشه
+        ACL: "public-read",
       })
     );
 

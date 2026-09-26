@@ -1,11 +1,9 @@
-// services/api.ts
 import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
-// قبل از هر درخواست، اگه توکن تو localStorage بود، تو هدر بذارش
 api.interceptors.request.use((config) => {
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
@@ -16,7 +14,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// اگه توکن منقضی/نامعتبر بود (401 یا 403)، کاربر رو به لاگین برگردون
 api.interceptors.response.use(
   (response) => response,
   (error) => {

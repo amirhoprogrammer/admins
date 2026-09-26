@@ -1,6 +1,5 @@
 import CategoryForm from "@/components/CategoryForm";
 import React from "react";
-// app/(admin)/Categories/new/page.tsx
 export default function NewCategory() {
   return (
     <div className="flex items-center justify-center py-4">

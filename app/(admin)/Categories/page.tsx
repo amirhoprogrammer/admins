@@ -2,7 +2,6 @@ import Category from "@/components/Category";
 import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 import React from "react";
-//app/Categories/page.tsx
 export default function Categories() {
   return (
     <div className="flex items-center justify-center py-4">

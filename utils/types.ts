@@ -7,7 +7,7 @@ export interface LoginResponse {
   token: string;
 }
 export interface productsDetail {
-  id?: number; // این خط اضافه شد
+  id?: number;
   category: number;
   name_en: string;
   name_fa: string;
@@ -33,8 +33,8 @@ export interface CreateCategoryPayload {
 }
 
 export interface CategoryFormProps {
-  categoryId?: number; // اگه پر باشه یعنی حالت Edit
-  initialData?: category; // اطلاعات اولیه برای پر کردن فرم
+  categoryId?: number;
+  initialData?: category;
 }
 export interface AuthContextType {
   isAuthenticated: boolean;

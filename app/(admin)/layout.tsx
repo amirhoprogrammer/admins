@@ -19,8 +19,8 @@ export default function AdminLayout({
     }
   }, [isLoading, isAuthenticated, router]);
 
-  if (isLoading) return null; // یا اسپینر
-  if (!isAuthenticated) return null; // تا ریدایرکت انجام بشه چیزی نشون نده
+  if (isLoading) return null;
+  if (!isAuthenticated) return null;
 
   return (
     <div>

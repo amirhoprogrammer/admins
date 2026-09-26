@@ -7,7 +7,7 @@ export const s3Client = new S3Client({
     accessKeyId: process.env.ARVAN_S3_ACCESS_KEY!,
     secretAccessKey: process.env.ARVAN_S3_SECRET_KEY!,
   },
-  forcePathStyle: true, // برای سرویس‌های S3-compatible مثل آروان لازمه
+  forcePathStyle: true,
 });
 
 export const BUCKET_NAME = process.env.ARVAN_S3_BUCKET!;
