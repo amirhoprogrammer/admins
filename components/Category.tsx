@@ -44,7 +44,7 @@ export default function Category() {
     }
   };
 
-  if (categories === null) return null; // یا یه اسکلتون لودینگ
+  if (categories === null) return null;
 
   return (
     <div className="p-2">
