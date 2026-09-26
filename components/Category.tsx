@@ -7,6 +7,7 @@ import {
 import { category } from "@/utils/types";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Category() {
   const [categories, setCategories] = useState<category[] | null>(null);
@@ -29,15 +30,16 @@ export default function Category() {
     setDeletingId(productId);
     try {
       await deleteCategory(productId);
-      // از state هم حذفش کن تا لیست بدون رفرش آپدیت بشه
       setCategories((prev) =>
         prev ? prev.filter((p) => p.id !== productId) : prev
       );
     } catch (error) {
       console.error("Error deleting product:", error);
       alert("خطا در حذف محصول");
+      toast.error("محصول حذف نشد");
     } finally {
       setDeletingId(null);
+      toast.success("دسته بندی مدنظر حذف شد");
     }
   };
 

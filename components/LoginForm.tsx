@@ -6,6 +6,7 @@ import axios from "axios";
 import { login } from "@/services/login";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -31,9 +32,10 @@ export default function LoginForm() {
 
     try {
       const data = await login(formData);
-      setToken(data.token); // بجای localStorage.setItem مستقیم
+      setToken(data.token);
       setStatus("success");
       router.push("/");
+      toast.success("ورود با موفقیت انجام شد!");
     } catch (error) {
       setStatus("error");
       if (axios.isAxiosError(error)) {
@@ -42,8 +44,10 @@ export default function LoginForm() {
             error.response?.data?.message ||
             "ایمیل یا رمز عبور اشتباه است"
         );
+        toast.error("ایمیل یا رمز عبور اشتباه است!");
       } else {
         setError("خطای غیرمنتظره‌ای رخ داد");
+        toast.error("خطای غیرمنتظره‌ای رخ داد");
       }
     } finally {
       setLoading(false);

@@ -7,6 +7,7 @@ import { createProducts, updateProduct } from "@/services/products";
 import { getCategories } from "@/services/category";
 import { productsDetail, category, ProductFormProps } from "@/utils/types";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function ProductForm({
   productId,
@@ -49,8 +50,10 @@ export default function ProductForm({
 
       if (isEditMode) {
         await updateProduct(productId, payload);
+        toast.success("محصول مدنظر با موفقیت ویرایش شد");
       } else {
         await createProducts(payload);
+        toast.success("محصول مدنظر با موفقیت اضافه شد");
       }
       router.push("/Products");
     } catch (err) {

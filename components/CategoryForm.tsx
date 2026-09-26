@@ -5,6 +5,7 @@ import { CategoryFormProps, CreateCategoryPayload } from "@/utils/types";
 import { useRouter } from "next/navigation";
 
 import { FormEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function CategoryForm({
   categoryId,
@@ -26,8 +27,10 @@ export default function CategoryForm({
       const payload = { ...form } as CreateCategoryPayload;
       if (isEditMode) {
         updateCategory(categoryId, payload);
+        toast.success("دسته بندی با موفقیت ویرایش شد");
       } else {
         await createCategory(payload);
+        toast.success("دسته بندی جدید با موفقیت اضافه شد");
       }
       router.push("/Categories");
     } catch (err) {
