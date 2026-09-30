@@ -48,7 +48,7 @@ export default function EditProduct() {
 
   return (
     <div className="flex items-center justify-center py-4">
-      <div className="bg-dashbord w-[60%] rounded-lg p-4">
+      <div className="bg-dashbord w-[60%] rounded-lg p-4 flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold mb-4">ویرایش محصول</h1>
         <ProductForm productId={product.id} initialData={product} />
       </div>
