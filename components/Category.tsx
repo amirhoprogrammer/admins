@@ -87,7 +87,7 @@ export default function Category() {
         {productToDelete && (
           <div className="flex flex-col gap-6">
             <p className="text-base text-center">
-              آیا از حذف محصول «{productToDelete.name_fa}» مطمئن هستید؟
+              آیا از حذف دسته بندی «{productToDelete.name_fa}» مطمئن هستید؟
               <br />
               <span className="text-sm text-back">
                 این عمل قابل بازگشت نیست.
