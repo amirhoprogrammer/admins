@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# admins of Tools e-commerce website
+first you login as admin then you see three section dashbord, products ,categories in dashbord you see the number of products and categories .In categories you the details of your categories and you can do update, add new categories, and delete categories. In Products you see your product as card, you have four buttons for details and delete product or edit this product, at the top section you see add button for adding new products.
+## Login page
+![login](https://github.com/amirhoprogrammer/admins/blob/master/public/admin.png)
+## Dashbord section
+![Dashbord](https://github.com/amirhoprogrammer/admins/blob/master/public/admin1.png)
+## Categories section
+![Categories](https://github.com/amirhoprogrammer/admins/blob/master/public/admin2.png)
+## Products section
+![Products](https://github.com/amirhoprogrammer/admins/blob/master/public/admin3.png)
+## add Products section
+![add-Products](https://github.com/amirhoprogrammer/admins/blob/master/public/admin4.png)
+## add Categories section
+![add-Categories](https://github.com/amirhoprogrammer/admins/blob/master/public/admin5.png)
+## Details of Products section
+![Details-of-Products](https://github.com/amirhoprogrammer/admins/blob/master/public/admin6.png)
+## Edit of Products section
+![Edit-of-Products](https://github.com/amirhoprogrammer/admins/blob/master/public/admin8.png)
+## Edit of Categories section
+![Edit-of-Products](https://github.com/amirhoprogrammer/admins/blob/master/public/admin9.png)
+## Delete alert of Products section
+![Delete-alert-of-Products](https://github.com/amirhoprogrammer/admins/blob/master/public/admin7.png)
+## Delete alert of Categories section
+![Delete-alert-of-Categories](https://github.com/amirhoprogrammer/admins/blob/master/public/admin10.png)
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
